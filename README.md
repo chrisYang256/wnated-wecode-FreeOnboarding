@@ -7,13 +7,13 @@
 
 ## EndPoint
 
-- 회원가입         : POST/users/signup 
-- 로그인           : POST/users/signin
-- 게시글 목록      : GET/bulletin-board/post-list
-- 특정 게시물 상세 : GET/bulletin-board/post-detail/<int:post_id>
-- 게시물 작성      : POST/bulletin-board/post-write
-- 게시물 수정      : PATCH/bulletin-board/post-update/<int:post_id>
-- 게시물 삭세      : DELETE/bulletin-board/post-delete/<int:post_id>
+- 회원가입    : POST/users/signup 
+- 로그인      : POST/users/signin
+- 게시물 목록 : GET/bulletin-board/post
+- 게시물 작성 : POST/bulletin-board/post
+- 게시물 수정 : PATCH/bulletin-board/post/<int:post_id>
+- 게시물 삭세 : DELETE/bulletin-board/post/<int:post_id>
+- 게시물 상세 : GET/bulletin-board/post-detail/<int:post_id>
 
 <br>
 
@@ -68,9 +68,9 @@ jwt 라이브러리를 통해 로그인하는 유저의 id가 포함된 암호�
 
 <br>
 
-- 게시글 목록 API
+- 게시물 목록 API
 > METHOD : GET
-> URL : /bulletin-board/post-list?offset=0&limit=10
+> URL : /bulletin-board/post?offset=0&limit=10
 
 > Response
 ```
@@ -96,9 +96,9 @@ SUCCESS : {'results' : results}, status = 200
 
 <br>
 
-- 특정 게시글 상세 API
+- 특정 게시물 상세 API
 > METHOD : GET
-> URL : /bulletin-board/post-detail/1
+> URL : /bulletin-board/post-detail/<int:post_id>
 
 > Response
 ```
@@ -119,7 +119,7 @@ SUCCESS : {'results' : results}, status = 200
 
 - 게시물 작성 API
 > METHOD : POST
-> URL : /bulletin-board/post-write
+> URL : /bulletin-board/post
 
 > Request
 ```
@@ -145,7 +145,7 @@ time.sleep(1) 으로 클라이언트 측의 연속입력 방지를 흉내 내어
 
 - 게시물 수정
 > METHOD : PATCH
-> URL : /bulletin-board/post-update/1
+> URL : /bulletin-board/post/<int:post_id>
 
 > Request
 ```
@@ -168,7 +168,7 @@ datetime.datetime.now()으로 글 수정 시점의 시간이 저장되게 하였
 
 - 게시물 삭세
 > METHOD : DELETE
-> URL : /bulletin-board/post-delete/1
+> URL : /bulletin-board/post/<int:post_id>
 
 > Response
 ```

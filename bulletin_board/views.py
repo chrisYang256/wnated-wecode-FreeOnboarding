@@ -9,7 +9,7 @@ from users.utils  import login_decorator
 from .models      import BulletinBoard
 from users.models import User
     
-class PostList(View):
+class Post(View):
     def get(self, request):
         limit  = int(request.GET.get('limit', 5))
         offset = int(request.GET.get('offset', 0))
@@ -27,25 +27,6 @@ class PostList(View):
 
         return JsonResponse({'results' : results}, status = 200)
 
-class PostDetail(View):
-    def get(self, request, post_id):
-        try:
-            post = BulletinBoard.objects.get(id=post_id)
-
-            results = {
-                'author'      : post.author.name if post.author else "사라진 회원입니다.",
-                'title'       : post.title,
-                'description' : post.description,
-                'created_at'  : post.created_at,
-                'updated_at'  : post.updated_at
-            }
-
-            return JsonResponse({'results' : results}, status = 200)
-
-        except BulletinBoard.DoesNotExist:
-                return JsonResponse({'message' : 'INVALID_POST'}, status=404)
-
-class PostWrite(View):
     @login_decorator
     def post(self, request):
         try:
@@ -68,7 +49,6 @@ class PostWrite(View):
         except KeyError:
             return JsonResponse({'message': 'KEY_ERROR'}, status=400)
 
-class PostUpdate(View):
     @login_decorator
     def patch(self, request, post_id):
         try:
@@ -91,7 +71,6 @@ class PostUpdate(View):
         except BulletinBoard.DoesNotExist:
                 return JsonResponse({'message' : 'INVALID_POST'}, status=404)  
 
-class PostDelete(View):
     @login_decorator
     def delete(self, request, post_id):
         try:
@@ -103,6 +82,23 @@ class PostDelete(View):
             BulletinBoard.objects.get(id=post_id).delete()
 
             return JsonResponse({'message' : 'SUCCESS'}, status=200)
+
+        except BulletinBoard.DoesNotExist:
+                return JsonResponse({'message' : 'INVALID_POST'}, status=404)
+class PostDetail(View):
+    def get(self, request, post_id):
+        try:
+            post = BulletinBoard.objects.get(id=post_id)
+
+            results = {
+                'author'      : post.author.name if post.author else "사라진 회원입니다.",
+                'title'       : post.title,
+                'description' : post.description,
+                'created_at'  : post.created_at,
+                'updated_at'  : post.updated_at
+            }
+
+            return JsonResponse({'results' : results}, status = 200)
 
         except BulletinBoard.DoesNotExist:
                 return JsonResponse({'message' : 'INVALID_POST'}, status=404)
