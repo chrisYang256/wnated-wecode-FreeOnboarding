@@ -85,6 +85,7 @@ class Post(View):
 
         except BulletinBoard.DoesNotExist:
                 return JsonResponse({'message' : 'INVALID_POST'}, status=404)
+            
 class PostDetail(View):
     def get(self, request, post_id):
         try:
