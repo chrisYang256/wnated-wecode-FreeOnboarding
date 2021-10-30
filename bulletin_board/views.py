@@ -74,7 +74,7 @@ class Post(View):
     @login_decorator
     def delete(self, request, post_id):
         try:
-            post = BulletinBoard.objects.get(id = post_id)
+            post = BulletinBoard.objects.get(id=post_id)
 
             if not post.author_id == request.user.id:
                 return JsonResponse({'message' : 'INVALID_USER'}, status=404)
