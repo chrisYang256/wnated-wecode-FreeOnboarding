@@ -11,9 +11,9 @@ from users.models import User
 
 class SignUp(View):
     def post(self, request):
-        data              = json.loads(request.body)
-        REGX_EMAIL        = '^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
-        REGX_PASSWORD     = '^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%^&*]{8,20}$'
+        data          = json.loads(request.body)
+        REGX_EMAIL    = '^[a-zA-Z0-9+-_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
+        REGX_PASSWORD = '^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%^&*]{8,20}$'
 
         try:
             if User.objects.filter(email=data['email']).exists():
