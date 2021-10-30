@@ -25,7 +25,7 @@ class Post(View):
             'created_at' : post.created_at
         } for post in post_list]
 
-        return JsonResponse({'results' : results}, status = 200)
+        return JsonResponse({'results' : results}, status=200)
 
     @login_decorator
     def post(self, request):
@@ -44,7 +44,7 @@ class Post(View):
 
             time.sleep(1)
 
-            return JsonResponse({'message' : 'SUCCESS'}, status = 201)
+            return JsonResponse({'message' : 'SUCCESS'}, status=201)
 
         except KeyError:
             return JsonResponse({'message': 'KEY_ERROR'}, status=400)
@@ -99,7 +99,7 @@ class PostDetail(View):
                 'updated_at'  : post.updated_at
             }
 
-            return JsonResponse({'results' : results}, status = 200)
+            return JsonResponse({'results' : results}, status=200)
 
         except BulletinBoard.DoesNotExist:
                 return JsonResponse({'message' : 'INVALID_POST'}, status=404)
