@@ -70,6 +70,7 @@ jwt 라이브러리를 통해 로그인하는 유저의 id가 포함된 암호�
 
 - 게시물 목록 API
 > METHOD : GET
+
 > URL : /bulletin-board/post?offset=0&limit=10
 
 > Response
