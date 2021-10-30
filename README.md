@@ -21,6 +21,7 @@
 
 - 회원가입 API
 > METHOD : POST
+
 > URL : /users/signup 
 
 > Request
@@ -48,6 +49,7 @@ FAIL-4  : {'message': 'KEY_ERROR'}, status=400
 
 - 로그인 API
 > METHOD : POST
+
 > URL : /users/signin
 
 > Request
@@ -99,6 +101,7 @@ SUCCESS : {'results' : results}, status = 200
 
 - 특정 게시물 상세 API
 > METHOD : GET
+
 > URL : /bulletin-board/post-detail/<int:post_id>
 
 > Response
@@ -120,6 +123,7 @@ SUCCESS : {'results' : results}, status = 200
 
 - 게시물 작성 API
 > METHOD : POST
+
 > URL : /bulletin-board/post
 
 > Request
@@ -146,6 +150,7 @@ time.sleep(1) 으로 클라이언트 측의 연속입력 방지를 흉내 내어
 
 - 게시물 수정
 > METHOD : PATCH
+
 > URL : /bulletin-board/post/<int:post_id>
 
 > Request
@@ -169,6 +174,7 @@ datetime.datetime.now()으로 글 수정 시점의 시간이 저장되게 하였
 
 - 게시물 삭세
 > METHOD : DELETE
+
 > URL : /bulletin-board/post/<int:post_id>
 
 > Response
